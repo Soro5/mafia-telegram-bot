@@ -56,3 +56,5 @@ def send_maessage(message):
     db.add_player(message.from_user.id, name=message.from_user.first_name)
 
 # Сделать смену дня и ночи 05.12.2023
+# Сделать пустой репозиторий на Github, установить соединение с локальным репозиторием (Git) (tip: git remote), клонировать удаленный репозиторий (Github) на pythonanywhere 
+# ВАЖНО: Доделать проект и сделать отчет в воскресенье! 
