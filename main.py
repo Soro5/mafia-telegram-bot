@@ -22,14 +22,17 @@ def get_killed(night):
 
 def game_loop(message):
     global night
-    bot.send_message(message.chat.id, "Приветствуем")
-    sleep(120)
+    bot.send_message(message.chat.id, "Приветствуем в Стикманграде! у вас 1 минута, чтобы познакомиться")
+    sleep(60)
     while True:
         if not night:
             bot.send_message(message.chat.id, 'Город засыпает. Просыпается мафия >:)')
         else:
             bot.send_message(message.chat.id, 'Город просыпается. Просыпается город')
         night = not night
+        alive = db.count_alive()
+        alive = '\n'.join(alive)
+        bot.send_message(message.chat.id, f"В игре:\n{alive}")
         sleep(120)
 
 # Commands, written for users
