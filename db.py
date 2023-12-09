@@ -113,6 +113,25 @@ def count_alive():
     con.commit()
     con.close()
     return data
+def check_winner():
+    con = sqlite3.connect("db.db")
+    cur = con.cursor()
+    sql_func_citisen = "SELECT username FROM players WHERE dead = 0 AND role = 'Citizen'"
+    cur.execute(sql_func_citisen)
+    citizen_data = cur.fetchall()
+    new_data = [row[0] for row in citizen_data]
+    citizen_data = new_data
+    sql_func_mafia = "SELECT username FROM players WHERE dead = 0 AND role = 'Mafia'"
+    cur.execute(sql_func_mafia)
+    mafia_data = cur.fetchall()
+    new_data = [row[0] for row in mafia_data]
+    mafia_data = new_data
+    if len(mafia_data) > len(citizen_data):
+        return "Победила мафия"
+    elif len(mafia_data) == len(citizen_data):
+        return "Ничья"
+    else:
+        return "Победили мирные"
 
 count_players()
 

@@ -29,6 +29,8 @@ def game_loop(message):
             bot.send_message(message.chat.id, 'Город засыпает. Просыпается мафия >:)')
         else:
             bot.send_message(message.chat.id, 'Город просыпается. Просыпается город')
+        winner = db.check_winner()
+        db.clear(dead=False)
         night = not night
         alive = db.count_alive()
         alive = '\n'.join(alive)
@@ -58,6 +60,5 @@ def send_maessage(message):
     bot.send_message(message.from_user.id, 'Добро пожаловать в Стикманград')
     db.add_player(message.from_user.id, name=message.from_user.first_name)
 
-# Сделать смену дня и ночи 05.12.2023
 # Сделать пустой репозиторий на Github, установить соединение с локальным репозиторием (Git) (tip: git remote), клонировать удаленный репозиторий (Github) на pythonanywhere 
 # ВАЖНО: Доделать проект и сделать отчет в воскресенье! 
